@@ -14,6 +14,7 @@ import CheckoutPage from './pages/checkout/checkout.component';
 
 
 
+
 class App extends React.Component {
 
   unsubscribeFromAuth=null;
@@ -35,6 +36,7 @@ class App extends React.Component {
       }
       else{
         setCurrentUser(userAuth);
+     
       }
     
         
@@ -68,6 +70,7 @@ class App extends React.Component {
 
 const mapStateToProps=createStructuredSelector({
   currentUser:selectCurrentUser
+ 
 })
 
 const mapDispatchToProps= dispatch =>({
