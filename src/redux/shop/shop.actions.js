@@ -25,5 +25,5 @@ export const fetchCollectionsStartAsync=()=>{
           // updateCollections(collectionsMap);
            
         }).catch(error=>dispatch(fetchCollectionsFailure(error.message))) ;
-    }
-}
+    };
+};

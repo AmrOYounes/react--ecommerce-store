@@ -4,6 +4,7 @@ import 'firebase/auth';
 
 
 
+
 const config ={
     apiKey: "AIzaSyDB7z8eYAouYM7jaZGHaLnOM4DzPwL6R5U",
     authDomain: "crwn-db-42b12.firebaseapp.com",
@@ -61,6 +62,15 @@ const config ={
     return userRef;
   };
 
+  export const getCurrentUser=()=>{
+    return new Promise((resolve,reject)=>{
+      const unsubscribe=auth.onAuthStateChanged(userAuth=>{
+        unsubscribe();
+        resolve(userAuth);
+      },reject)
+    });
+  }
+
   export const addCollectionAndDocuments=async(collectionKey,objectsToAdd)=>{
     const collectionRef=firestore.collection(collectionKey);
     const batch=firestore.batch();
@@ -76,8 +86,9 @@ return await batch.commit();
    export const auth =firebase.auth();
    export const firestore=firebase.firestore();
    
-   const provider = new firebase.auth.GoogleAuthProvider();
-   provider.setCustomParameters({prompt:'select_account' });
-   export const signInWithGoogle=()=>auth.signInWithPopup(provider);
+   export const googleProvider = new firebase.auth.GoogleAuthProvider();
+   googleProvider.setCustomParameters({prompt:'select_account' });
+   export const signInWithGoogle=()=>auth.signInWithPopup(googleProvider);
    export default firebase;
+
 
